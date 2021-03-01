@@ -13,7 +13,7 @@
     "@babel/runtime": "^7.12.5",
     "ramda": "^0.27.1",
     "rxjs": "^6.6.3",
-    "three": "^0.124.0"
+    "three": "^0.125.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
