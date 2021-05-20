@@ -32,14 +32,14 @@ export const createCubeRootAndBones = (): [ THREE.Object3D, THREE.Object3D[], Di
 
 const createGeometry = () => new THREE.BoxGeometry(C.cube.size, C.cube.size, C.cube.size)
 
-const createCubes = (count: number, geometry: THREE.Geometry) =>
+const createCubes = (count: number, geometry: THREE.BufferGeometry) =>
     composit(count, geometry)(R.range(0, count))
 
 const toHue = (count: number) => (x: number) => R.clamp(0.0, 1.0, x / count)
 
 const toMaterial = (hue: number) => new THREE.MeshPhysicalMaterial(C.cubeMaterial(hue))
 
-const toMesh = (geometry: THREE.Geometry) => (material: THREE.Material) => new THREE.Mesh(geometry, material)
+const toMesh = (geometry: THREE.BufferGeometry) => (material: THREE.Material) => new THREE.Mesh(geometry, material)
 
 const axis = () => new THREE.Vector3(0.0, 1.0, 0.0)
 
@@ -47,7 +47,7 @@ const setAttr = (mesh: THREE.Mesh) => {
     mesh.translateOnAxis(axis(), C.cube.boneLength)
 }
 
-const composit = (count: number, geometry: THREE.Geometry) => R.pipe(
+const composit = (count: number, geometry: THREE.BufferGeometry) => R.pipe(
     R.map(toHue(count)),
     R.map(toMaterial),
     R.map(toMesh(geometry)),
