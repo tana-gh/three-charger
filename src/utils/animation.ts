@@ -10,7 +10,7 @@ export interface IAnimationState {
 }
 
 export const create = (now: number): Rx.Observable<IAnimationState> => {
-    const animations = RxOp.repeat()(Rx.of(0, Rx.animationFrameScheduler))
+    const animations = Rx.interval(0, Rx.animationFrameScheduler)
     const start = now
 
     return Rx.pipe(
